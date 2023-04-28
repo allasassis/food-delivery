@@ -1,7 +1,7 @@
 package com.delivery.food_api.model;
 
+import com.delivery.food_api.dto.DataInsertCustomer;
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 
@@ -17,16 +17,19 @@ public class Customer {
     private String lastName;
     private String email;
     private String cellphone;
+
     @OneToOne
+    @JoinColumn(name = "address_id")
     private Address address;
+
     private LocalDate birthDate;
 
-    private LocalDate creationDate;
+    private final LocalDate creationDate = LocalDate.now();
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String lastName, String email, String cellphone, Address address, LocalDate birthDate, LocalDate creationDate) {
+    public Customer(Long id, String name, String lastName, String email, String cellphone, Address address, LocalDate birthDate) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -34,7 +37,15 @@ public class Customer {
         this.cellphone = cellphone;
         this.address = address;
         this.birthDate = birthDate;
-        this.creationDate = LocalDate.now();
+    }
+
+    public Customer(DataInsertCustomer dto) {
+        this.name = dto.name();
+        this.lastName = dto.lastName();
+        this.email = dto.email();
+        this.cellphone = dto.cellphone();
+        this.birthDate = dto.birthDate();
+        this.address = new Address(dto.address());
     }
 
     public Long getId() {
@@ -67,5 +78,9 @@ public class Customer {
 
     public LocalDate getCreationDate() {
         return creationDate;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

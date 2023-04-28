@@ -1,6 +1,7 @@
 package com.delivery.food_api.model;
 
 
+import com.delivery.food_api.dto.DataAddress;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,7 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     private Customer customer;
 
     private String street;
@@ -23,12 +24,11 @@ public class Address {
     private String country;
     private String zipcode;
 
+
     public Address() {
     }
 
-    public Address(Long id, Customer customer, String street, String complement, Integer number, String neighborhood, String city, String state, String country, String zipcode) {
-        this.id = id;
-        this.customer = customer;
+    public Address(String street, String complement, Integer number, String neighborhood, String city, String state, String country, String zipcode) {
         this.street = street;
         this.complement = complement;
         this.number = number;
@@ -38,4 +38,16 @@ public class Address {
         this.country = country;
         this.zipcode = zipcode;
     }
+
+    public Address(DataAddress address) {
+        this.street = address.street();
+        this.complement = address.complement();
+        this.number = address.number();
+        this.neighborhood = address.neighborhood();
+        this.city = address.city();
+        this.state = address.state();
+        this.country = address.country();
+        this.zipcode = address.zipcode();
+    }
+
 }
