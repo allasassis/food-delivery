@@ -1,6 +1,6 @@
 package com.delivery.food_api.model;
 
-import com.delivery.food_api.dto.DataInsertCustomer;
+import com.delivery.food_api.dto.customer.DataInsertCustomer;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
