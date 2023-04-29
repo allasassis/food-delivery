@@ -3,6 +3,7 @@ package com.delivery.food_api.service;
 import com.delivery.food_api.dto.customer.DataCustomerDetailed;
 import com.delivery.food_api.dto.customer.DataInsertCustomer;
 import com.delivery.food_api.dto.customer.DataListCustomer;
+import com.delivery.food_api.dto.customer.DataUpdateCustomer;
 import com.delivery.food_api.model.Address;
 import com.delivery.food_api.model.Customer;
 import com.delivery.food_api.repository.AddressRepository;
@@ -35,6 +36,13 @@ public class CustomerService {
         Address address = new Address(dto.address());
         addressRepository.save(address);
         customer.setAddress(address);
+        customerRepository.save(customer);
+        return new DataCustomerDetailed(customer);
+    }
+
+    public DataCustomerDetailed updateCustomer(Long id, DataUpdateCustomer dto) {
+        Customer customer = verifier(id);
+        customer.update(dto);
         customerRepository.save(customer);
         return new DataCustomerDetailed(customer);
     }

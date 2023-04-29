@@ -2,6 +2,7 @@ package com.delivery.food_api.model;
 
 
 import com.delivery.food_api.dto.DataAddress;
+import com.delivery.food_api.dto.DataUpdateAddress;
 import jakarta.persistence.*;
 
 @Entity
@@ -84,5 +85,32 @@ public class Address {
 
     public String getZipcode() {
         return zipcode;
+    }
+
+    public void update(DataUpdateAddress dto) {
+        if (dto.street() != null) {
+            this.street = dto.street();
+        }
+        if (dto.complement() != null) {
+            this.complement = dto.complement();
+        }
+        if (dto.number() != null) {
+            this.number = dto.number();
+        }
+        if (dto.neighborhood() != null) {
+            this.neighborhood = dto.neighborhood();
+        }
+        if (dto.city() != null) {
+            this.city = dto.city();
+        }
+        if (dto.state() != null) {
+            this.state = dto.state();
+        }
+        if (dto.country() != null) {
+            this.country = dto.country();
+        }
+        if (dto.zipcode() != null) {
+            this.zipcode = dto.zipcode();
+        }
     }
 }

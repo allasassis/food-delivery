@@ -1,6 +1,7 @@
 package com.delivery.food_api.model;
 
 import com.delivery.food_api.dto.customer.DataInsertCustomer;
+import com.delivery.food_api.dto.customer.DataUpdateCustomer;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -82,5 +83,26 @@ public class Customer {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void update(DataUpdateCustomer dto) {
+        if (dto.name() != null) {
+            this.name = dto.name();
+        }
+        if (dto.lastName() != null) {
+            this.lastName = dto.lastName();
+        }
+        if (dto.email() != null) {
+            this.email = dto.email();
+        }
+        if (dto.cellphone() != null) {
+            this.cellphone = dto.cellphone();
+        }
+        if (dto.birthDate() != null) {
+            this.birthDate = dto.birthDate();
+        }
+        if (dto.address() != null) {
+            this.address.update(dto.address());
+        }
     }
 }

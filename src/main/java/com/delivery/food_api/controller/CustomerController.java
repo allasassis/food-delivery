@@ -1,5 +1,6 @@
 package com.delivery.food_api.controller;
 
+import com.delivery.food_api.dto.customer.DataUpdateCustomer;
 import com.delivery.food_api.dto.customer.DataCustomerDetailed;
 import com.delivery.food_api.dto.customer.DataInsertCustomer;
 import com.delivery.food_api.dto.customer.DataListCustomer;
@@ -32,6 +33,12 @@ public class CustomerController {
     @Transactional
     public ResponseEntity<DataCustomerDetailed> insertCustomer(@RequestBody DataInsertCustomer dto) {
         return ResponseEntity.ok(customerService.insertCustomer(dto));
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DataCustomerDetailed> updateCustomer(@PathVariable Long id, @RequestBody DataUpdateCustomer dto) {
+        return ResponseEntity.ok(customerService.updateCustomer(id, dto));
     }
 
     @DeleteMapping("/{id}")
