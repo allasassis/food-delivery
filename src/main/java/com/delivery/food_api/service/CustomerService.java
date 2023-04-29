@@ -48,7 +48,8 @@ public class CustomerService {
     }
 
     public void deleteCustomer(Long id) {
-        verifier(id);
+        Customer customer = verifier(id);
+        addressRepository.deleteById(customer.getAddress().getId());
         customerRepository.deleteById(id);
     }
 

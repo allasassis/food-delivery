@@ -51,6 +51,10 @@ public class Address {
         this.zipcode = address.zipcode();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
