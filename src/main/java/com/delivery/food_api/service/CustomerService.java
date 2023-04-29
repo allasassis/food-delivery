@@ -39,6 +39,11 @@ public class CustomerService {
         return new DataCustomerDetailed(customer);
     }
 
+    public void deleteCustomer(Long id) {
+        verifier(id);
+        customerRepository.deleteById(id);
+    }
+
     private Customer verifier(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
