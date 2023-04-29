@@ -50,4 +50,39 @@ public class Address {
         this.zipcode = address.zipcode();
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
 }

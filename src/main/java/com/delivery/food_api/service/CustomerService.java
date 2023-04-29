@@ -1,5 +1,6 @@
 package com.delivery.food_api.service;
 
+import com.delivery.food_api.dto.DataCustomerDetailed;
 import com.delivery.food_api.dto.DataInsertCustomer;
 import com.delivery.food_api.model.Address;
 import com.delivery.food_api.model.Customer;
@@ -17,12 +18,12 @@ public class CustomerService {
     @Autowired
     private AddressRepository addressRepository;
 
-    public Customer insertCustomer(DataInsertCustomer dto) {
+    public DataCustomerDetailed insertCustomer(DataInsertCustomer dto) {
         Customer customer = new Customer(dto);
         Address address = new Address(dto.address());
         addressRepository.save(address);
         customer.setAddress(address);
         customerRepository.save(customer);
-        return customer;
+        return new DataCustomerDetailed(customer);
     }
 }
