@@ -1,8 +1,8 @@
 package com.delivery.food_api.model;
 
 
-import com.delivery.food_api.dto.DataAddress;
-import com.delivery.food_api.dto.DataUpdateAddress;
+import com.delivery.food_api.dto.address.DataAddress;
+import com.delivery.food_api.dto.address.DataUpdateAddress;
 import jakarta.persistence.*;
 
 @Entity

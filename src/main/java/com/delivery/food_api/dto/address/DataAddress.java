@@ -1,4 +1,4 @@
-package com.delivery.food_api.dto;
+package com.delivery.food_api.dto.address;
 
 import com.delivery.food_api.model.Address;
 import jakarta.validation.constraints.NotBlank;

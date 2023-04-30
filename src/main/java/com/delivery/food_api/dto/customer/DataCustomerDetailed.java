@@ -1,6 +1,6 @@
 package com.delivery.food_api.dto.customer;
 
-import com.delivery.food_api.dto.DataAddress;
+import com.delivery.food_api.dto.address.DataAddress;
 import com.delivery.food_api.model.Customer;
 
 import java.time.LocalDate;

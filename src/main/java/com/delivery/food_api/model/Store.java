@@ -19,7 +19,10 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private StoreCategory category;
 
-    private DayOfWeek closingDays;
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    private List<DayOfWeek> closingDays;
+
     private LocalTime openingHours;
     private LocalTime closingHours;
 
@@ -29,7 +32,7 @@ public class Store {
     public Store() {
     }
 
-    public Store(String name, StoreCategory category, DayOfWeek closingDays, LocalTime openingHours, LocalTime closingHours, List<Items> menu) {
+    public Store(String name, StoreCategory category, List<DayOfWeek> closingDays, LocalTime openingHours, LocalTime closingHours, List<Items> menu) {
         this.name = name;
         this.category = category;
         this.closingDays = closingDays;
@@ -46,7 +49,7 @@ public class Store {
         return category;
     }
 
-    public DayOfWeek getClosingDays() {
+    public List<DayOfWeek> getClosingDays() {
         return closingDays;
     }
 

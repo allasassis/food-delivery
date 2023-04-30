@@ -1,6 +1,6 @@
 package com.delivery.food_api.dto.customer;
 
-import com.delivery.food_api.dto.DataUpdateAddress;
+import com.delivery.food_api.dto.address.DataUpdateAddress;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 
