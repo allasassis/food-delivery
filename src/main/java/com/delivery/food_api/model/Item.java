@@ -1,12 +1,13 @@
 package com.delivery.food_api.model;
 
+import com.delivery.food_api.dto.store.DtoItems;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "items")
-public class Items {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +20,21 @@ public class Items {
     private String name;
     private BigDecimal price;
 
-    @Enumerated(EnumType.STRING)
-    private Category category;
+    private String category;
 
-    public Items() {
+    public Item() {
     }
 
-    public Items(String name, BigDecimal price, Category category) {
+    public Item(String name, BigDecimal price, String category) {
         this.name = name;
         this.price = price;
         this.category = category;
+    }
+
+    public Item(DtoItems dtoItem) {
+        this.name = dtoItem.name();
+        this.price = dtoItem.price();
+        this.category = dtoItem.category();
     }
 
     public String getName() {
@@ -39,7 +45,11 @@ public class Items {
         return price;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

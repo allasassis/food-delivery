@@ -1,9 +1,11 @@
 package com.delivery.food_api.model;
 
+import com.delivery.food_api.dto.store.DataInsertStore;
+import com.delivery.food_api.dto.store.DtoItems;
 import jakarta.persistence.*;
 
-import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,40 +18,49 @@ public class Store {
 
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    private StoreCategory category;
+    private String storeCategory;
 
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
-    private List<DayOfWeek> closingDays;
+    private List<String> closingDays;
 
     private LocalTime openingHours;
     private LocalTime closingHours;
 
     @OneToMany(mappedBy = "store")
-    private List<Items> menu;
+    private List<Item> menu;
 
     public Store() {
     }
 
-    public Store(String name, StoreCategory category, List<DayOfWeek> closingDays, LocalTime openingHours, LocalTime closingHours, List<Items> menu) {
+    public Store(String name, StoreCategory String, List<String> closingDays, LocalTime openingHours, LocalTime closingHours, List<Item> menu) {
         this.name = name;
-        this.category = category;
+        this.storeCategory = storeCategory;
         this.closingDays = closingDays;
         this.openingHours = openingHours;
         this.closingHours = closingHours;
         this.menu = menu;
     }
 
+    public Store(DataInsertStore dto) {
+        this.name = dto.name();
+        this.storeCategory = dto.storeCategory();
+        this.closingDays = dto.closingDays();
+        this.openingHours = dto.openingHours();
+        this.closingHours = dto.closingHours();
+        this.menu = new ArrayList<>();
+        for (DtoItems dtoItem: dto.menu()) {
+            this.menu.add(new Item(dtoItem));
+        }
+    }
+
     public String getName() {
         return name;
     }
 
-    public StoreCategory getCategory() {
-        return category;
+    public String getCategory() {
+        return storeCategory;
     }
 
-    public List<DayOfWeek> getClosingDays() {
+    public List<String> getClosingDays() {
         return closingDays;
     }
 
@@ -61,7 +72,7 @@ public class Store {
         return closingHours;
     }
 
-    public List<Items> getMenu() {
+    public List<Item> getMenu() {
         return menu;
     }
 }

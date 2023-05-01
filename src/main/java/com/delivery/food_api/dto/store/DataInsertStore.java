@@ -1,8 +1,12 @@
 package com.delivery.food_api.dto.store;
 
-import com.delivery.food_api.model.StoreCategory;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.List;
 
-public record DataInsertStore(String name, StoreCategory category, DayOfWeek closingDays) {
+public record DataInsertStore(@NotBlank String name, @NotBlank String storeCategory, @NotBlank List<String> closingDays,
+                              @NotNull LocalTime openingHours,@NotNull LocalTime closingHours, @Valid List<DtoItems> menu) {
 }
