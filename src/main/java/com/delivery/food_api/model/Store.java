@@ -1,6 +1,7 @@
 package com.delivery.food_api.model;
 
 import com.delivery.food_api.dto.store.DataInsertStore;
+import com.delivery.food_api.dto.store.DataUpdateStore;
 import com.delivery.food_api.dto.store.DtoItems;
 import jakarta.persistence.*;
 
@@ -74,5 +75,23 @@ public class Store {
 
     public List<Item> getMenu() {
         return menu;
+    }
+
+    public void update(DataUpdateStore dto) {
+        if (dto.name() != null) {
+            this.name = dto.name();
+        }
+        if (dto.storeCategory() != null) {
+            this.storeCategory = dto.storeCategory();
+        }
+        if (dto.closingDays() != null) {
+            this.closingDays = dto.closingDays();
+        }
+        if (dto.openingHours() != null) {
+            this.openingHours = dto.openingHours();
+        }
+        if (dto.closingHours() != null) {
+            this.closingHours = dto.closingHours();
+        }
     }
 }

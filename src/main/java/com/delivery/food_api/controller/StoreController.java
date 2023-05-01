@@ -3,6 +3,7 @@ package com.delivery.food_api.controller;
 import com.delivery.food_api.dto.store.DataInsertStore;
 import com.delivery.food_api.dto.store.DataStoreDetailed;
 import com.delivery.food_api.dto.store.DataStoreList;
+import com.delivery.food_api.dto.store.DataUpdateStore;
 import com.delivery.food_api.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,12 @@ public class StoreController {
     @Transactional
     public ResponseEntity<DataStoreDetailed> insertStore(@RequestBody DataInsertStore dto) {
         return ResponseEntity.status(201).body(storeService.insertStore(dto));
+    }
+
+    @PutMapping("/{storeId}")
+    @Transactional
+    public ResponseEntity<DataStoreDetailed> updateStore(@PathVariable Long storeId, @RequestBody DataUpdateStore dto) {
+        return ResponseEntity.ok(storeService.updateStore(storeId, dto));
     }
 
     @DeleteMapping("/{storeId}")

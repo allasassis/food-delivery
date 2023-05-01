@@ -1,14 +1,13 @@
 package com.delivery.food_api.service;
 
-import com.delivery.food_api.dto.store.DataInsertStore;
-import com.delivery.food_api.dto.store.DataStoreDetailed;
-import com.delivery.food_api.dto.store.DataStoreList;
-import com.delivery.food_api.dto.store.DtoItems;
+import com.delivery.food_api.dto.store.*;
+import com.delivery.food_api.model.Customer;
 import com.delivery.food_api.model.Item;
 import com.delivery.food_api.model.Store;
 import com.delivery.food_api.repository.ItemsRepository;
 import com.delivery.food_api.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,12 +28,8 @@ public class StoreService {
     }
 
     public DataStoreDetailed findById(Long id){
-        Optional<Store> store = storeRepository.findById(id);
-        if (store.isEmpty()) {
-            throw new RuntimeException("This store doesn't exist in our database!");
-        }
-
-        return new DataStoreDetailed(store.get());
+        Store store = verifyIfExists(id);
+        return new DataStoreDetailed(store);
     }
 
     public DataStoreDetailed insertStore(DataInsertStore dto) {
@@ -49,17 +44,27 @@ public class StoreService {
                 list.add(item1);
             }
         }
-
         return new DataStoreDetailed(store);
     }
 
+    public DataStoreDetailed updateStore(Long storeId, DataUpdateStore dto) {
+        Store store = verifyIfExists(storeId);
+        store.update(dto);
+        storeRepository.save(store);
+        return new DataStoreDetailed(store);
+    }
 
     public void deleteStore(Long id) {
+        Store store = verifyIfExists(id);
+        itemsRepository.deleteAll(store.getMenu());
+        storeRepository.deleteById(id);
+    }
+
+    private Store verifyIfExists(Long id) {
         Optional<Store> store = storeRepository.findById(id);
         if (store.isEmpty()) {
-            throw new RuntimeException("This store doesn't exist in our database!");
+            throw new RuntimeException("This store doesn't exist!");
         }
-        itemsRepository.deleteAll(store.get().getMenu());
-        storeRepository.deleteById(id);
+        return store.get();
     }
 }
