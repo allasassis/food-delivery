@@ -1,31 +1,34 @@
 package com.delivery.food_api.model;
 
+import com.delivery.food_api.dto.order.DtoOrderItem;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "order_items")
+@Embeddable
 public class OrderItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 
     private String name;
     private BigDecimal price;
-    private Boolean isPaid = false;
 
     public OrderItem() {
     }
 
-    public OrderItem(Order order, String name, BigDecimal price) {
-        this.order = order;
+    public OrderItem(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
+    }
+
+    public OrderItem(DtoOrderItem item) {
+        this.name = item.getName();
+        this.price = item.getPrice();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
     }
 }
