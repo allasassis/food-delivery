@@ -25,4 +25,10 @@ public class OrderController {
     public DataOrderDetailed insertOrder(@RequestBody DataInsertOrder dto) {
         return orderService.insertOrder(dto);
     }
+
+    @PutMapping("/pay/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public DataOrderDetailed payOrder(@PathVariable Long id) {
+        return orderService.payOrder(id);
+    }
 }

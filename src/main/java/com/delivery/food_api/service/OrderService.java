@@ -9,6 +9,7 @@ import com.delivery.food_api.model.Store;
 import com.delivery.food_api.repository.CustomerRepository;
 import com.delivery.food_api.repository.OrderRepository;
 import com.delivery.food_api.repository.StoreRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,19 @@ public class OrderService {
             throw new FoodApiException("This order doesn't exist.");
         }
         return new DataOrderDetailed(order.get());
+    }
+
+    public DataOrderDetailed payOrder(Long id) {
+        Order order = verifier(id);
+        order.payOrder();
+        return new DataOrderDetailed(order);
+    }
+
+    private Order verifier(Long id) {
+        Optional<Order> order = orderRepository.findById(id);
+        if (order.isEmpty()) {
+            throw new FoodApiException("This order doesn't exist.");
+        }
+        return order.get();
     }
 }

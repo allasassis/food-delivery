@@ -96,4 +96,9 @@ public class Order {
     public Boolean getPaid() {
         return isPaid;
     }
+
+    public void payOrder() {
+        this.isPaid = true;
+        this.status = Status.CONFIRMED;
+    }
 }
