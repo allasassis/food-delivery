@@ -14,6 +14,12 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public DataOrderDetailed getOrderById(@PathVariable Long id) {
+        return orderService.findById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public DataOrderDetailed insertOrder(@RequestBody DataInsertOrder dto) {

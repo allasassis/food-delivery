@@ -38,4 +38,12 @@ public class OrderService {
         orderRepository.save(order);
         return new DataOrderDetailed(order);
     }
+
+    public DataOrderDetailed findById(Long id) {
+        Optional<Order> order = orderRepository.findById(id);
+        if (order.isEmpty()) {
+            throw new FoodApiException("This order doesn't exist.");
+        }
+        return new DataOrderDetailed(order.get());
+    }
 }
