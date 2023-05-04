@@ -1,6 +1,7 @@
 package com.delivery.food_api.service;
 
 import com.delivery.food_api.dto.store.*;
+import com.delivery.food_api.exception.FoodApiException;
 import com.delivery.food_api.model.Customer;
 import com.delivery.food_api.model.Item;
 import com.delivery.food_api.model.Store;
@@ -63,7 +64,7 @@ public class StoreService {
     private Store verifyIfExists(Long id) {
         Optional<Store> store = storeRepository.findById(id);
         if (store.isEmpty()) {
-            throw new RuntimeException("This store doesn't exist!");
+            throw new FoodApiException("This store doesn't exist!");
         }
         return store.get();
     }

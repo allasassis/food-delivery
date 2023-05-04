@@ -4,6 +4,7 @@ import com.delivery.food_api.dto.customer.DataCustomerDetailed;
 import com.delivery.food_api.dto.customer.DataInsertCustomer;
 import com.delivery.food_api.dto.customer.DataListCustomer;
 import com.delivery.food_api.dto.customer.DataUpdateCustomer;
+import com.delivery.food_api.exception.FoodApiException;
 import com.delivery.food_api.model.Address;
 import com.delivery.food_api.model.Customer;
 import com.delivery.food_api.repository.AddressRepository;
@@ -56,7 +57,7 @@ public class CustomerService {
     private Customer verifier(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
-            throw new RuntimeException("This customer doesn't exist!");
+            throw new FoodApiException("This customer doesn't exist!");
         }
         return customer.get();
     }

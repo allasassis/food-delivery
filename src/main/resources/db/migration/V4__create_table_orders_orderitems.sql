@@ -16,16 +16,16 @@ CREATE TABLE orders (
                         customer_id BIGINT NOT NULL,
                         store_id BIGINT NOT NULL,
                         total_price NUMERIC(10, 2) NOT NULL,
+                        is_paid boolean DEFAULT false,
                         date_time TIMESTAMP NOT NULL,
                         FOREIGN KEY (customer_id) REFERENCES customers(id),
                         FOREIGN KEY (store_id) REFERENCES stores(id)
 );
 
 CREATE TABLE order_items (
-                             id BIGSERIAL PRIMARY KEY,
-                             order_id BIGINT NOT NULL,
-                             name VARCHAR(255) NOT NULL,
-                             price NUMERIC(10, 2) NOT NULL,
-                             is_paid BOOLEAN NOT NULL DEFAULT false,
-                             FOREIGN KEY (order_id) REFERENCES orders(id)
+                             id SERIAL PRIMARY KEY,
+                             order_id BIGINT REFERENCES orders(id),
+                             name VARCHAR(255),
+                             price NUMERIC(10,2)
 );
+
