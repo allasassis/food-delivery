@@ -89,7 +89,7 @@ Possui um método de autenticação utilizado com Spring Security, onde o usuár
 registrar-se e fazer o login para gerar um código JWT que acompanhará todas as solicitações do usuário na API. Todas as funções usam DTO na entrada e saída de dados.
 <br><br>
 **Todas as senhas são criptografadas quando são cadastradas no banco de dados.** <br><br>
-Essa API utiliza o MongoDB como banco de dados e possui testes unitários com JUnit 5.
+Essa API utiliza o PostgreSQL como banco de dados.
 ## Funções da API:
 ### Clientes:
 - Listar clientes - `/customer`
