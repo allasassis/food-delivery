@@ -67,7 +67,7 @@ This API uses PostgreSQL as its database.
 
 ## Documentation
 Clone or download the application, upgrade the application.properties with your database link (it must be
-a MongoDB database) then
+a PostgreSQL database) then
 run it, after that consult the documentation with all the methods in the link bellow:
 <br>http://localhost:8080/swagger-ui.html
 
@@ -146,7 +146,7 @@ Essa API utiliza o MongoDB como banco de dados e possui testes unitários com JU
 
 ## Documentação
 Clone ou baixe a aplicação, atualize o application.properties com o link do seu banco de dados (tem que ser
-um banco de dados MongoDB), após
+um banco de dados PostgreSQL), após
 isso execute o programa e consulte a documentação com todos os métodos no link abaixo:
 <br>http://localhost:8080/swagger-ui.html
 
