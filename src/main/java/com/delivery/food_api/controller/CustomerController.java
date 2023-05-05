@@ -5,6 +5,7 @@ import com.delivery.food_api.dto.customer.DataCustomerDetailed;
 import com.delivery.food_api.dto.customer.DataInsertCustomer;
 import com.delivery.food_api.dto.customer.DataListCustomer;
 import com.delivery.food_api.service.CustomerService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
+@SecurityRequirement(name = "bearer-key")
 public class CustomerController {
 
     @Autowired

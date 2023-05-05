@@ -5,6 +5,7 @@ import com.delivery.food_api.dto.store.DataStoreDetailed;
 import com.delivery.food_api.dto.store.DataStoreList;
 import com.delivery.food_api.dto.store.DataUpdateStore;
 import com.delivery.food_api.service.StoreService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/store")
+@SecurityRequirement(name = "bearer-key")
 public class StoreController {
 
     @Autowired
