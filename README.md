@@ -28,7 +28,8 @@ This API uses PostgreSQL as its database.
 ### Orders:
 
 - Find order by id - `/order/{id}`
-- Insert order - `/order`
+- Insert order - `/order` <br>
+
   ```
       {
        "email": "example@example.com",
@@ -106,8 +107,9 @@ Essa API utiliza o MongoDB como banco de dados e possui testes unitários com JU
 
 ### Pedidos:
 - Achar pedido pelo id - `/order/{id}`
-- Inserir pedido - `/order`
--   ```
+- Inserir pedido - `/order`<br>
+
+   ```
       {
        "email": "exemplo@exemplo.com",
        "storeId": 4,
